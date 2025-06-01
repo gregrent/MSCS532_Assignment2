@@ -5,4 +5,5 @@
 #########################################
 
 def quick_sort(arr):
-    pass
+    if len(arr) <= 1:
+        return arr
