@@ -4,6 +4,8 @@
 # Quick Sort implementation.
 #########################################
 
+import random
+
 def quick_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -23,6 +25,18 @@ def quick_sort(arr):
     # then combine them with the middle part
     return quick_sort(left) + middle + quick_sort(right)
 
-arr = [10, 7, 8, 9, 1, 5]
-sorted_arr = quick_sort(arr)
-print("Sorted array:", sorted_arr)
+
+# Example for sorted data
+sorted_data = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+print("Sorted Input:", sorted_data)
+print("Output:", quick_sort(sorted_data), "\n")
+
+# Example for reverse sorted data
+reverse_sorted_data = [9, 8, 7, 6, 5, 4, 3, 2, 1]
+print("Reverse Sorted Input:", reverse_sorted_data)
+print("Output:", quick_sort(reverse_sorted_data), "\n")
+
+# Example for random data
+random_data = random.sample(range(1, 100), 10)
+print("Random Input:", random_data)
+print("Output:", quick_sort(random_data))
