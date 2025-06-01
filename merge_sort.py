@@ -29,3 +29,7 @@ def merge(left, right):
     merged.extend(left[left_index:])
     merged.extend(right[right_index:])
     return merged
+
+arr = [38, 27, 43, 3, 9, 82, 10]
+sorted_arr = merge_sort(arr)
+print("Sorted array:", sorted_arr)
