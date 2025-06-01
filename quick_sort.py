@@ -14,3 +14,7 @@ def quick_sort(arr):
     right = [x for x in arr if x > pivot]
 
     return quick_sort(left) + middle + quick_sort(right)
+
+arr = [10, 7, 8, 9, 1, 5]
+sorted_arr = quick_sort(arr)
+print("Sorted array:", sorted_arr)
