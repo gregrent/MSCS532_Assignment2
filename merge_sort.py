@@ -6,7 +6,8 @@
 
 
 def merge_sort(arr):
-    pass
+    if len(arr) <= 1:
+        return arr
 
 def merge(left, right):
     pass
