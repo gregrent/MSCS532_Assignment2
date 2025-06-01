@@ -7,6 +7,7 @@
 import random
 import time
 import tracemalloc
+import matplotlib.pyplot as plt
 
 def merge_sort(arr):
     if len(arr) <= 1:
@@ -87,22 +88,41 @@ random_data = random.sample(range(1, 100), 10)
 print("Quick Sort Random Input:", random_data)
 print("Output:", quick_sort(random_data), "\n")
 
-# Performance metrics for merge sort
+# Measure Merge Sort performance
 tracemalloc.start()
 start = time.perf_counter()
 merge_sort(random_data.copy())
 end = time.perf_counter()
-current, peak = tracemalloc.get_traced_memory()
+current, peak_merge = tracemalloc.get_traced_memory()
 tracemalloc.stop()
+merge_time = end - start
 
-print(f"[Merge Sort] Time: {end - start:.6f}s, Peak Memory: {peak / 1024:.2f} KB", "\n")
+print(f"[Merge Sort] Time: {merge_time:.6f}s, Peak Memory: {peak_merge / 1024:.2f} KB\n")
 
-# Performance metrics for quick sort
+# Measure Quick Sort performance
 tracemalloc.start()
 start = time.perf_counter()
 quick_sort(random_data.copy())
 end = time.perf_counter()
-current, peak = tracemalloc.get_traced_memory()
+current, peak_quick = tracemalloc.get_traced_memory()
 tracemalloc.stop()
+quick_time = end - start
 
-print(f"[Quick Sort] Time: {end - start:.6f}s, Peak Memory: {peak / 1024:.2f} KB")
+print(f"[Quick Sort] Time: {quick_time:.6f}s, Peak Memory: {peak_quick / 1024:.2f} KB")
+
+# Plotting execution time
+plt.figure(figsize=(10, 5))
+
+plt.subplot(1, 2, 1)
+plt.bar(['Merge Sort', 'Quick Sort'], [merge_time, quick_time], color=['blue', 'orange'])
+plt.ylabel('Time (seconds)')
+plt.title('Execution Time')
+
+# Plotting peak memory usage
+plt.subplot(1, 2, 2)
+plt.bar(['Merge Sort', 'Quick Sort'], [peak_merge / 1024, peak_quick / 1024], color=['blue', 'orange'])
+plt.ylabel('Memory (KB)')
+plt.title('Peak Memory Usage')
+
+plt.tight_layout()
+plt.show()
